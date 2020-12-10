@@ -29,15 +29,15 @@ For the administrators of the site and the laboratory, they have an *authenticat
 
 **Manage Publications:** These functions must be restricted or allowed, depending on the logged in user.
 
-- New Post: The user with permission to this function should be able to create a new post with the following fields:
-  - Title
-  - Body (the body text has to be saved in markdown format and displayed on the main page converted to HTML format)
-  - An image to accompany the publication
-  - An image to display in the image gallery on the main page (optional)
+- ***New Post:*** The user with permission to this function should be able to create a new post with the following fields:
+  1. Title
+  2. Body (the body text has to be saved in markdown format and displayed on the main page converted to HTML format)
+  3. An image to accompany the publication
+  4. An image to display in the image gallery on the main page (optional)
 
-- Edit Post: The user with permission to this function should be able to edit any field of a post.
+- ***Edit Post:*** The user with permission to this function should be able to edit any field of a post.
 
-- Delete Post: The user with permission to this function should be able to delete a post.
+- ***Delete Post:*** The user with permission to this function should be able to delete a post.
 
 
 
