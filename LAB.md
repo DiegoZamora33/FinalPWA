@@ -22,3 +22,6 @@ For the administrators of the site and the laboratory, they have an *authenticat
 - If I am a client of the laboratory, I should have a section on the main page to enter my unique code and I should be able to see my list of clinical results and download each one in pdf format.
 
 - If I am a Site Administrator, the main page should have a button to redirect to the login page.
+
+
+**Administrative Page:** Once the login authentication is completed successfully. The user should be redirected to this page, where depending on the type of user it is, the functions will be displayed according to the type of user that is authenticated.
