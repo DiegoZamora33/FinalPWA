@@ -25,7 +25,7 @@ For the administrators of the site and the laboratory, they have an *authenticat
 
 **Login Page:** The Administrator user, Chemical user and the publisher user should use a login page to authenticate with an email and password and then be redirected to the Administration page. If the user to authenticate is a new user who still has his temporary password, he must be redirected to a form where he can set a new password)
 
-**Administrative Page:** Once the login authentication is completed successfully. The user should be redirected to this page, depending on the type of user the functions will be displayed according to the type of user that is authenticated. All users should have a section where they can see their personal data, and be able to change their password.
+**Administrative Page:** Once the login authentication is completed successfully. The user should be redirected to this page, depending on the type of user the functions will be displayed according to the type of user that is authenticated. All users should have a section where they can see their personal data, and be able to change their email and password.
 
 **Manage Publications:** These functions must be restricted or allowed, depending on the logged in user.
 
@@ -71,4 +71,4 @@ For the administrators of the site and the laboratory, they have an *authenticat
 
 - ***Delete User:***  The user with permission for this role should be able to delete a User.
 
-**Change password:** If the user to authenticate is a new user who still has his temporary password, he must be redirected to a form where he can set a new password). All users should have a section where they can see their personal data, and be able to change their password.
+**Change password:** If the user to authenticate is a new user who still has his temporary password, he must be redirected to a form where he can set a new password). All users should have a section where they can see their personal data, and be able to change their email and password.
