@@ -19,9 +19,9 @@ For the administrators of the site and the laboratory, they have an *authenticat
 
 **Main Page:** This is the main page of the site, accessible to everyone, it must be able to show a gallery of images, all the publications and image for each publication, contact information, ubicacion, hours and a section for public users to leave their comments for the laboratory staff .
 
-- If I am a client of the laboratory, I should have a section on the main page to enter my unique code and I should be able to see my list of clinical results and download each one in pdf format.
+- If you are a lab customer, you should have a section on the home page to enter my unique code and you should be able to see my list of clinical results and download each one in pdf format.
 
-- If I am a Site Administrator, the main page should have a button to redirect to the login page.
+- If you are a site administrator, the home page should have a button to redirect to the login page.
 
 **Login Page:** The Administrator user, Chemical user and the publisher user should use a login page to authenticate with an email and password and then be redirected to the Administration page.
 
@@ -39,6 +39,14 @@ For the administrators of the site and the laboratory, they have an *authenticat
 
 - ***Delete Post:*** The user with permission to this function should be able to delete a post.
 
+**Manage Customer Files:** These functions must be restricted or allowed, depending on the logged in user.
+
+- ***New Patient:*** The user with permission for this role should be able to create a new file with the following fields:
+  1. Fist Name
+  2. Last Name
+  3. Age
+  4. Cellphone Number
+  **5. Unique Code:**
 
 
 
