@@ -71,4 +71,4 @@ For the administrators of the site and the laboratory, they have an *authenticat
 
 - ***Delete User:***  The user with permission for this role should be able to delete a User.
 
-**Change Email/password of user:** If the user to authenticate is a new user who still has his temporary password, he must be redirected to a form where he can set a new password). All users should have a section where they can see their personal data, and be able to change their email and password.
+- ***Change Email/password of user:*** If the user to authenticate is a new user who still has his temporary password, he must be redirected to a form where he can set a new password). All users should have a section where they can see their personal data, and be able to change their email and password.
