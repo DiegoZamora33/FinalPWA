@@ -129,10 +129,36 @@ The urls I use to manage patient files are as follows.
 They are urls for a complete crud.
 In addition to 4 urls for the administration of users and the first login.
 
+***Note:*** All my urls have the function login_required (views.funcion) where the function of the view is stopped as a parameter, because that way it is easier for me to manage the access of a required login.
 
+##### views.py
+This file is the hard part of my back-end it contains all the functions for the CRUDs of my models and the functions of index, login and the functions for changing the password and email.
 
+- **def index**: receives a request as a parameter and by get method I return my index.html with all the information corresponding to the patients, publications, user and types of users.
 
+- **def publications_api**: receives a request as a parameter and only for a POST request it returns a list in JSON format of the information of all the publications. I have decided to use the post method for the security of the token.
 
+- **def publication_api**: receives as a parameter a request and the corresponding id of a publication and only by a POST request what it does is search for the publication by the database id and also searches the text in .md format of the publication with the function `util.delJump (util.get_publication (publication.id))` for each publication and returns its information in JSON format if the id does not exist, it returns an error message in JSON format. I have decided to use the post method for the security of the token.
+
+- **def newPublication_api**: it receives a request as a parameter and only for a POST request what it does is save the form data sent by POST method to create a new publication, within the function we use `util.save_publication ( newPublication.id, text) `which is a function of the ** util.py ** file that does is save in` .md` format the body of the publication text with the name of the publication id. Returns a success or fail message corresponding to the event of the function.
+
+- **def updatePublication_api**: receives as a parameter a request, id and only for a POST request what it does is save the form data sent by POST method to update the information of a publication is specific by id. If the publication already has images assigned, what it does is delete the old image `util.delete_image (oldImage)` and save the new image. then what it does is save the body text of the publication in `.md` format. Returns a success or fail message corresponding to the event of the function.
+
+- **def deletePublication_api**: it receives as a parameter a request, id and only by a POST request what it does is delete a publication from the database by the specific id but before that it deletes all the images associated with the publication with `util.delete_image (oldImage)` and also delete the .md file `util.delete_MD (id)`. Returns a success or fail message corresponding to the event of the function.
+
+- **def image_gallery_api**: it receives as a parameter a request, id and only for a POST request what it does is return the gallery image of the corresponding publication, this function returns the image as such with a FileResponse ().
+
+- **def image_post_api**: it receives as a parameter a request, id and only for a POST request what it does is return the post image of the corresponding publication, this function returns the image as such with a FileResponse ().
+
+- **def fileFolder_api**: it receives as a parameter a request, code, id and only by a POST request what it does is that it searches for a patient by the code, then with the patient it obtains the patient's file with the id of the record of the file, return the pdf file corresponding to the patient, this function returns the file as such with a FileResponse ().
+
+- **def folder_api**: this function receives as parameters a request and a code, the code is the patient's code and what it does is return in json format a whole list of the File_Analysis records that the patient has in relation to That model. It only receives the request by post method because I like the security of the token.
+
+- **def newFileFolder_api**: this function receives a request and a code as parameters, the code is the patient's code and what it does is create a new record in File_Analysis in relation to the patient model obtained by the code. It only receives the request by post method because I like the security of the token. returns a success or fail message depending on the time that occurs in the function.
+
+- **def updateFileFolder_api**: this function receives a request, a code and an id as parameters, the code is the patient's code and the id is the id of the reference record in the File_Analysis model and what it does is update the data From the record related to the patient in File_Analysis, delete the old pdf file with the function `util.delete_PDF (oldFile)` and save the new file. It returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
+
+- **def deleteFileFolder_api**: this function receives as parameters a request, a code and an id, the code is the patient's code and the id is the id of the reference record in the File_Analysis model and what it does is delete the data of the record made to the patient in File_Analysis, delete the pdf file with the function `util.delete_PDF (oldFile)` and delete the record in the database. returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
 
 
 
