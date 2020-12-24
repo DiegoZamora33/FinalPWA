@@ -19,7 +19,7 @@ For the administrators of the site and the laboratory, they have an *authenticat
 
 **Main Page:** This is the main page of the site, accessible to everyone, it must be able to show a gallery of images, all the publications and image for each publication, contact information, location on google maps and routine hours.
 
-- If you are a lab customer, you should have a section on the home page to enter my unique code and you should be able to see my list of clinical results and download each one in pdf format.
+- If you are a lab patient, you should have a section on the home page to enter my unique code and you should be able to see my list of clinical results and download each one in pdf format.
 
 - If you are a site administrator, the home page should have a button to redirect to the login page.
 
@@ -46,18 +46,17 @@ For the administrators of the site and the laboratory, they have an *authenticat
   2. Last Name
   3. Age
   4. Cellphone Number
-  5. **Unique Code:** The unique code should be 5-character alphanumeric and should be created automatically by the system in addition to preventing the generation of bad words. (Each patient has a unique code attached to their file folder)
-  6. **Folder Files:** Every time a new patient is created, a folder named equal to the unique code generated for the patient must be created, the folder must be saved in the system to store a list of the files referring to this patient.
+  5. **Unique Code:** The unique code should be 5-character alphanumeric and should be created automatically by the system. (Each patient has a unique code attached to their file folder)
   
-- ***Upload file of clinical analysis results:***  The user with permission to this role should be able to upload a file, in pdf format, to a patient's files folder. It should have an interface to simply select the file and load it, the system should save the file in the corresponding folder. 
+- ***Upload file of clinical analysis results:***  The user with permission to this role should be able to upload a file, in pdf format, to a patient's files folder. It should have an interface to simply select the file and load it, the system should save the file in the corresponding Patient. 
 
-- ***ReUpload file of clinical analysis results:*** The user with permission to this role should be able to ReUpload a file, in pdf format, to a patient's files folder. It should have an interface to simply select the new file and load it, the system should delete the old file and save the new file in the corresponding folder.
+- ***ReUpload file of clinical analysis results:*** The user with permission to this role should be able to ReUpload a file, in pdf format, to a patient's files folder. It should have an interface to simply select the new file and load it, the system should delete the old file and save the new file in the corresponding Patient.
 
 - ***Delete file of clinical analysis results:*** The user with permission for this role should be able to delete a file in the corresponding folder of any patient.
 
-- ***Edit Patient:*** The user with permission to this role should be able to edit any field of a Patient, except for the unique code and the file folder, once a unique code has been assigned, these attributes cannot be changed..
+- ***Edit Patient:*** The user with permission to this role should be able to edit any field of a Patient, except for the unique code, once a unique code has been assigned, these attributes cannot be changed.
 
-- ***Delete Patient:***  The user with permission for this role should be able to delete a patient. This should remove from the database and the file folder with all the patient's files
+- ***Delete Patient:***  The user with permission for this role should be able to delete a patient. This should remove from the database and patient's files. Later the unique code is moved to ***Bad List***, because when a unique code is assigned, never again to be assigned another patient.
 
 **Manage Users:** Only an administrator user has permission to these functions.
 
@@ -67,8 +66,21 @@ For the administrators of the site and the laboratory, they have an *authenticat
   3. Email
   4. Cellphone Number
   5. Type of user
-  6. A temporary password (This password is temporary for the new user, the new user must access the system and change it)
+  6. Password (This password only is temporary for the new user, the new user must access the system and change it)
 
 - ***Delete User:***  The user with permission for this role should be able to delete a User.
 
-- ***Change Email/password of user:*** If the user to authenticate is a new user who still has his temporary password, he must be redirected to a form where he can set a new password). All users should have a section where they can see their personal data, and be able to change their email and password.
+- ***Change Email/password of user:*** If the user to authenticate is a new user who still has his temporary password, he must be redirected to a form where he can set a new password). All users should be able to change their email or password.
+
+<br>
+
+## Documentation
+
+### Two Django App's
+I decided to declare 2 Django applications in my final project, because for me it is easier to have a django application just for site administration and another application only for public use.
+Both applications share the unique database model.
+
+The project is called * final_project *, the website administration application is called * adminLab * and the public use application is called * laboratory *.
+In the file `final_project / urls.py` the url references for each application are declared.
+
+
