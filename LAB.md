@@ -99,8 +99,35 @@ For the above fields to work, it is necessary to have installed *** Pillow *** l
 
 6. * Bad_List *: I use this model to store all the codes that have already been used as required by the project requirements.
 
+<br>
 
+### Application ** AdminLab **
+I have decided to make a totally dynamic application with JavaScript, that is, I am always making fetch requests to my adminLab application and then I render the data in the graphical interface.
 
+##### urls.py
+This file contains a total of 26 url entries.
+
+My index url is the main url for my ** adminLab ** application.
+
+I have decided to use 3 urls to serve my pdf files and my images.
+`path (" ImageGallery / <int: id> ", views.image_gallery_api, name =" ImageGallery ")` refers to a function that returns the gallery image corresponding to the id of a Post.
+`path (" ImagePost / <int: id> ", views.image_post_api, name =" ImagePost ")` refers to a function that returns the post image corresponding to the id of a Post.
+`path (" FileFolder / <str: code> / <int: id> ", views.fileFolder_api, name =" FileFolder ")` refers to a function that returns the pdf file corresponding to a patient and the id of the record in the database.
+
+I also have different urls for the CRUD of ** Patient **, I have a url for each manipulation such as ** newPatient **, ** updatePatient **, ** deletePatient ** and the urls to obtain information about all the patients ** patients ** and about a specific patient ** patient / <str: code> **
+
+I also have several urls for the CRUD of ** Publication **, I have a url for each manipulation such as ** newPublication **, ** updatePublication **, ** deletePublication ** and the url to obtain information about all the publications ** publications ** and about a specific publication ** publication / <int: id> **.
+
+The urls I use to manage patient files are as follows.
+`path (" folder / <str: code> ", views.folder_api, name =" folder ")`.
+
+`path (" newFileFolder / <str: code> ", login_required (views.newFileFolder_api), name =" NewFileFolder ")`.
+
+`path (" updateFileFolder / <str: code> / <int: id> ", login_required (views.updateFileFolder_api), name =" UpdateFileFolder ")`.
+
+`path (" deleteFileFolder / <str: code> / <int: id> ", login_required (views.deleteFileFolder_api), name =" DeleteFileFolder ")`.
+They are urls for a complete crud.
+In addition to 4 urls for the administration of users and the first login.
 
 
 
