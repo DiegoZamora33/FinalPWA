@@ -83,4 +83,42 @@ Both applications share the unique database model.
 The project is called * final_project *, the website administration application is called * adminLab * and the public use application is called * laboratory *.
 In the file `final_project / urls.py` the url references for each application are declared.
 
+### Data Base (Models)
+I have used a total of 6 models in the file `adminLab / models.py` this file contains all the models used for the entire website, it is also used by the laboratory application.
+The list of models I used is as follows.
+1. * Type_User *: This model only serves to save the user types **Admin**, **Chemist Doctor** and **Publisher**. ***It is important*** that this model is not null, it is important that the model always has the following registers `{" Admin "," Chemist Doctor "," Publisher "}`.
+
+2. * User *: This model extends from `from django.contrib.auth.models import AbstractUser` and I have added the necessary attributes to make a one-to-one relationship with * Type_User * model, cell phone and a boolean to know if even It is under the temporary password as well as date fields for creation and update.
+
+3. * Patient *: This model contains the fields required in the requirements and I have added fields for creation and update date. It also has a `serialize ()` function to convert to JSON format.
+
+4. * File_Analysis *: This model contains a foreign key reference for the ** Patient ** model, it contains a text field and the important thing contains a field of the type `file = models.FileField (upload_to = f" MEDIA / Patients_Files / ", null = False, blank = False)`, what this field does is save a file to the specified path. it also contains fields for creation and update date information. It also has a `serialize ()` function to convert the fields except the file field into JSON format.
+
+5. * Post *: This model contains 2 very interesting fields, it contains a field of the type `image_post = models.ImageField (upload_to =" MEDIA / Post_Images / ", null = True, blank = True)`, this field saves an image in the specified path and also the field `image_gallery = models.ImageField (upload_to =" MEDIA / Gallery_Images / ", null = True, blank = True)` which also saves an image in the specified path, the difference is that an image It is shown in the image gallery of the laboratory website and another image is shown within the publication.
+For the above fields to work, it is necessary to have installed *** Pillow *** libraries, since I am working with images in my model.
+
+6. * Bad_List *: I use this model to store all the codes that have already been used as required by the project requirements.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
