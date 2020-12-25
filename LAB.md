@@ -160,18 +160,105 @@ This file is the hard part of my back-end it contains all the functions for the 
 
 - **def deleteFileFolder_api**: this function receives as parameters a request, a code and an id, the code is the patient's code and the id is the id of the reference record in the File_Analysis model and what it does is delete the data of the record made to the patient in File_Analysis, delete the pdf file with the function `util.delete_PDF (oldFile)` and delete the record in the database. returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
 
+- **def patients_api**: this function receives a request as parameters and what it does is return a list of JSON formats of all the information of a patient from the Patient model. returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
+
+- **def patient_api**: this function receives a request and a code as parameters, the code is the patient code to show their information, what it does is return a JSON of all the information of a patient from the Patient model. returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
+
+- **def newPatient_api**: this function receives a request as parameters and what it does is create a new Patient from the Patient model. To generate the unique code use the function `code = util.generateCode (listCodes)` where `listCodes` is the union of the assigned code list of the Patient model and the codes found in the Bad_List model. returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
+
+**def updatePatient_api**: this function receives a request and a code as parameters, the code is the patient's code to update their information. returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
+
+**def deletePatient_api**: this function receives a request and a code as parameters, the code is the patient's code to delete their information from the Patient model, when a patient is deleted we look for records referenced in the File_Analysis model, if it has references We also eliminate their assigned files, when the patient is eliminated, his code becomes added to the Bad_List model. returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
+
+**def users_api**: this function receives a request as parameters and what it does is return a list of JSON formats of all the information of a user of the User model. returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
+
+**def deleteUser_api**: this function receives as parameters a request and an email, the email is the user's email to delete their information from the User model. returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
+
+**def changePassword_api**: this function receives a request as parameters and by POST method, it receives current password, new password and password confirmation, it makes user validations to verify that it is the same user in the request to change the password . returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
+
+**def changeEmail_api**: this function receives a request as parameters and by POST method, receives current email, new email and email confirmation, performs user validations to verify that it is the same user in the request to change the email . returns a success or fail message according to the event that occurs in the function. It only receives the request by post method because I like the security of the token.
+
+**def firstLogin_api**: this function receives a request as parameters and by POST method, receives current password, new password and password confirmation, makes user validations to verify that it is the same user in the request to change the password . returns a success or fail message according to the event that occurs in the function, returns it directly to render the Login view or the index view. It only receives the request by post method because I like the security of the token.
+
+**def login_view**: this function receives a request as parameters and by POST method, receives email and password, performs user validations to verify that it is a user in the database and creates a login. returns a fail message according to the event that occurs and redirects to index if the login is correct. It only receives the request by post method because I like the security of the token. and by get method renders an html path of login.html
+
+**def logout_view**: this function receives a request as parameters, what it does is close the instance of a user. return a redirect to index using GET method
+
+**def register_api**: this function receives a request as a parameter, and by POST method receives the corresponding information to create a user of the User model, but it creates the instance of the user with `user = User.objects.create_user (email , email, password) `after we update the data corresponding to the created user to fill the data that was added to the user model. returns a success or fail message according to the event that happens in the function. it only receives by POST method because I like the security of the token.
+
+***Note:*** almost all functions are restricted by the type of user that is being received in the request.
+
+##### util.py
+
+This file contains functions to manipulate files on the disk, I made it based on the util.py file of the wiki project, it has different functions, to save .md files corresponding to a publication, save or delete images, to save or delete pdf files and to generate the unique codes.
+
+- **def generateCode**: this function receives as a parameter a list of codes which are excluded in the code generation, with the line `` code = ''. join ([choice (ascii_uppercase + digits) for i in range ( 5)]) `I generate a new random alphanumeric code of 5 characters and verify if this code is in the listCodes, if it exists in listCodes I generate one more until I obtain a code that is not in listCodes.
+
+**def list_publications**: this function returns a list of existing file names in the path `MEDIA / Post_Data /` with the extension .md, in that path is where all my .md files corresponding to a publication are stored .
+
+**def save_publication**: this function receives as parameters a text and a title, what it does is save the content of the text in an .md file with the title specified in the path `MEDIA / Post_Data /`
+
+**def delete_image**: what this function does is delete the file specified in the url that it receives as a parameter. Normalmnete this cundion I use it to eliminate the images corresponding to a publication. These images are stored in the paths `MEDIA / Gallery_Images /` and `MEDIA / Post_Images /`
+
+**def delete_PDF**: what this function does is delete the file specified in the url that it receives as a parameter. Normally I use this to delete the pdf file corresponding to a File_Analysis. These pdf files are stored in the path `MEDIA / Patients_Files /`
+
+**def delete_MD**: what this function does is delete the specified file with the title it receives as a parameter. Normally I use this function to delete the .md file corresponding to a Post. these .md files are stored in the path `MEDIA / Post_Data /`
+
+**def get_publication**: what this function does is obtain the specified file with the title it receives as a parameter. normally I use this function to get the text from the .md file corresponding to a Post. these .md files are stored in the path `MEDIA / Post_Data /`
+
+**def delJump**: this function receives a Markdown format text with a parameter, which is to eliminate an excess of `/ r` because when displaying my markdown text it adds an extra of those operators that are line breaks and creates a conflict with my saved text. returns that same text but debugged from `/ r`
+
+##### Templates, html, CSS and JS
+
+for my html templates I have decided to use bootstrap because it is a design library that I have mastered very well, in addition to a ** myStyles.css ** file that contains some classes of custom functions, as well as a FadeIn nimation that I made and that I like it.
+
+I have also decided to use the JS libraries required by Bootstrap to be able to use modals and a pretty responsive Navbar.
+
+- **layout.html**: this file contains the references to all the complete Boostrap to its Boostrap CSS and JS. And it also refers to my custom CSS file and a very special and important File called **dinamico.js**. In addition to a block that will be extended by index.html. the arhic layout also contains a Bootstrap Modals system which I use as a formulation and as alerts to show and hide dynamically. This modal files are assigned by the type of user.
+
+- **index.html**: this file is very informative since in this file I make all my dynamic website possible, it receives all the information that the viewsd.index function passes to it and depending on the user it shows the corresponding administrative modules, it extends from the layout.html file, this file together with dinamico.js are for each other.
+
+- **login.html**: this file contains the form to login a user.
 
 
+##### dinamico.js
+
+This file is of vital importance, it is the most important file for the front-end of my adminLab web application to work.
+
+This file contains various functions to manage Navbar button events, manage when and how to hide or show modals, make requests to my django backend and to render new elements in HTML DOM.
+
+It has a total of 1511 lines, explaining all the content of my file is very extensive so I will explain them in a general way.
+
+Each function in my file has a name which is very descriptive with the action it performs and also before each function contains a comment that describes what the function does.
+
+This file has `fetch` functions to send and receive requests from my Django server and depending on the response it has, it does actions to render more elements in the DOM and / or show
+Bootstrap Modals.
+
+To submit image and pdf files, I have used the `$ ajax` function because it is more powerful than the` fetch` function and it is better for me just to submit a form containing binary data of images and files.
+
+### Application ** AdminLab **
+
+##### urls.py
+This file only contains an index url needed to display the main page of the website. and a url to redirect to login when it is an unwanted login.
+
+##### views.py
+This file contains 2 functions and makes an import from `from adminLab.models import Post` to import the publicacoin model from my shared database by the 2 applications.
+
+- **def index**: render my index.html and pass it as a parameter the list of all publications, in addition to obtaining the .md text of each publication and converting it to HTML format with the Markdown functions.
+
+- **def redirecLogin**: This function only redirects the login when it comes to an unwanted login.
+
+##### Templates, HTML, CSS and JS 
+This application only contains a total of 2 templates, ** layout.html ** and ** index.html **.
+
+- **layout.html**: this file contains the references to all the complete Boostrap to its Boostrap CSS and JS. And it also refers to my custom CSS file and a very special and important File called **dinamico.js**. In addition to a block that will be extended by index.html. the layout file also contains a Bootstrap Modal, said modal helps me to ask for the unique code of the patient and show his list of analsis. also in the footer it contains a frame that refers to a google map.
+
+- **index.html**: this file renders all the publications that are stored in my database.
+
+- **dynamic.js** this file is only to send the patient's code to my django server and obtain the list of analysis results and depending on the server's response, show a modal with the patient's information or error messages depending on the case.
 
 
+***NOTE:*** FOR THE WEBSITE TO WORK IT IS NECESSARY TO HAVE THE RECORDS OF "Type_User" {"Admin", "Chemist Doctor", "Publicher"} AND HAVE THE "Markdown2" AND "Pillow" LIBRARIES INSTALLED.
 
-
-
-
-
-
-
-
-
-
+***MY WEBSITE IS TOTALLY RESPONSIVE, TO GET THIS I HAVE DECIDED TO USE ALL THE FUNCTIONALITY OF THE "Bootstrap"***
 
